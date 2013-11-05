@@ -1,4 +1,4 @@
-# Criação de um GreaseMoneky Script  #
+# Criação de um GreaseMonkey Script  #
 
 ## Objectivos :##
 - Criação de um script que permita ao jogador de travian poupar algum tempo.

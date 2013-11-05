@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ScarePT</title>
+
+<script type="text/javascript">
+
+	function valida(){
+		var div = document.getElementById("result");
+		div.innerHTML="";
+		validarZ();
+	}
+	
+	function validarZ(){
+		var testx = document.getElementById("x");
+		x = testx.value;
+		var testy = document.getElementById("y");
+		y = testy.value;
+		
+		var num = convertCoordinatesToZ(x,y);
+		
+		var div = document.getElementById("result");
+		texto = "Resultado = " + num;
+		var text = document.createTextNode(texto);
+		div.innerHTML="";
+		div.appendChild(text);	
+	}
+	
+</script>
+
+<script type="text/javascript" src="trav.user.js"> </script>
+</head>
+
+<body>
+
+<p>Coordenadas a converter</p>
+
+<form id="form1" name="form1" onsubmit="return valida();" action="*" method="post">
+	X:<input type="text" name="x" id="x" />
+  	<br />
+    Y:<input type="text" name="y" id="y" /><br>
+  	<input type="submit" name="go" id="go" value="Submit" />
+  	<br />
+</form>
+
+<div id="result">
+
+</div>
+</body>
+</html>
