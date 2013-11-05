@@ -9,9 +9,11 @@ function createMatrix(x,y){
 	for(i=0; i<x; i++){
 		matrixZ[i] = new Array();
 		for(j=0; j<y; j++){
-			matrixZ[i][j] = temp+1;
+			temporary=j+1;
+			matrixZ[i][j] = (400*(j*2))+temp+1;
 			temp++;
 		}
+	temp=i+1;
 	}
 	return matrixZ;
 }
@@ -33,3 +35,53 @@ function convertCoordinatesToZ(x,y){
 	return temp;
 }
 
+function cleanXText(x){
+	var res="";
+	for(i=1;i<x.length;i++)
+	{
+		res +=x[i];
+	}
+	return res;
+}
+
+function cleanYText(y){
+	var res="";
+	for(i=0;i<y.length-1;i++)
+	{
+		res +=y[i];
+	}
+	return res;
+}
+
+function createDiv(x,y){
+	
+}
+
+function createLinkHREF(z){
+	//http://ts2.travianteam.com/build.php?z=195992&gid=17&t=5
+	
+	text ="http://ts2.travianteam.com/build.php?z=";
+	text += z;
+	text += "&gid=17&t=5";
+	return text;
+}
+
+function createImageWithHREF(z){
+	var img = document.createElement("img");
+	img.setAttribute("src",sourceImg);
+	link = createLinkHREF(z);
+	var a = document.createElement("a");
+	a.setAttribute("href",link);
+	a.appendChild(img);
+	return a;
+}
+
+function createLinksToMarket(){
+	teste = document.getElementById("result");
+	teste.innerHTML="";
+	convertCoordinatesToZ();
+	texto = document.createTextNode("SCARE WORLD");
+	teste.appendChild(texto);
+}
+
+//createLinksToMarket();

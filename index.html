@@ -10,6 +10,8 @@
 		var div = document.getElementById("result");
 		div.innerHTML="";
 		validarZ();
+		validarXY();
+		inputImg(328579);
 	}
 	
 	function validarZ(){
@@ -27,6 +29,32 @@
 		div.appendChild(text);	
 	}
 	
+	function validarXY(){
+		var testx = document.getElementById("x2");
+		x = testx.value;
+		var testy = document.getElementById("y2");
+		y = testy.value;
+		
+		var numX = cleanXText(x);
+		var numY = cleanYText(y);
+		
+		var div = document.getElementById("result");
+		div.innerHTML+="<br>";
+		texto = "  Resultado X = " + numX;
+		text = document.createTextNode(texto);
+		div.appendChild(text);
+		div.innerHTML+="<br>";
+		texto = "  Resultado Y = " + numY;
+		text = document.createTextNode(texto);
+		div.appendChild(text);	
+	}
+	
+	function inputImg(code){
+		img = createImageWithHREF(code);
+		var div = document.getElementById("result");
+		div.innerHTML+="<br>";
+		div.appendChild(img);
+	}
 </script>
 
 <script type="text/javascript" src="trav.user.js"> </script>
@@ -40,6 +68,13 @@
 	X:<input type="text" name="x" id="x" />
   	<br />
     Y:<input type="text" name="y" id="y" /><br>
+  	<input type="submit" name="go" id="go" value="Submit" />
+  	<br />
+	
+	<br /><br />
+	Clean X:<input type="text" name="x2" id="x2" />
+  	<br />
+    Clean Y:<input type="text" name="y2" id="y2" /><br>
   	<input type="submit" name="go" id="go" value="Submit" />
   	<br />
 </form>
