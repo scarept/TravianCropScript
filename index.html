@@ -7,17 +7,18 @@
 <script type="text/javascript">
 
 	function valida(){
-		var div = document.getElementById("result");
-		div.innerHTML="";
-		validarZ();
-		validarXY();
-		inputImg(328579);
+		createLinksToMarket();
+		//var div = document.getElementById("result");
+		//div.innerHTML="";
+		//numbaro = parseInt(validarZ());
+		//validarXY();
+		//inputImg(numbaro);
 	}
 	
 	function validarZ(){
-		var testx = document.getElementById("x");
+		var testx = document.getElementById("x1");
 		x = testx.value;
-		var testy = document.getElementById("y");
+		var testy = document.getElementById("y1");
 		y = testy.value;
 		
 		var num = convertCoordinatesToZ(x,y);
@@ -26,7 +27,8 @@
 		texto = "Resultado = " + num;
 		var text = document.createTextNode(texto);
 		div.innerHTML="";
-		div.appendChild(text);	
+		div.appendChild(text);
+		return num;		
 	}
 	
 	function validarXY(){
@@ -55,6 +57,7 @@
 		div.innerHTML+="<br>";
 		div.appendChild(img);
 	}
+
 </script>
 
 <script type="text/javascript" src="trav.user.js"> </script>
@@ -65,22 +68,52 @@
 <p>Coordenadas a converter</p>
 
 <form id="form1" name="form1" onsubmit="return valida();" action="*" method="post">
-	X:<input type="text" name="x" id="x" />
+	X:<input type="text" name="x1" id="x1" />
   	<br />
-    Y:<input type="text" name="y" id="y" /><br>
-  	<input type="submit" name="go" id="go" value="Submit" />
+    Y:<input type="text" name="y1" id="y1" /><br>
+	<button type="button" onclick="return valida();">GO!</button>
   	<br />
 	
 	<br /><br />
 	Clean X:<input type="text" name="x2" id="x2" />
   	<br />
     Clean Y:<input type="text" name="y2" id="y2" /><br>
-  	<input type="submit" name="go" id="go" value="Submit" />
+  	<button type="button" onclick="return valida();">GO!</button>
   	<br />
 </form>
 
 <div id="result">
 
 </div>
+
+
+<div id="sidebarBoxVillagelist" class="sidebarBox toggleable expanded ">
+<div class="sidebarBoxInnerBox">
+<div class="innerBox content">
+	<ul>
+			<li class="">
+					<a href="http://ts2.travianteam.com/dorf1.php?newdid=15674&amp;" class="">
+					<img src="Team2_ficheiros/x.gif" alt="">
+					<div class="name">**50. VEGETA!</div>
+					‎‭<span class="coordinates coordinatesWrapper coordinatesAligned coordinatesLTR"><span class="coordinateX">(‭‭144‬‬</span><span class="coordinatePipe">|</span><span class="coordinateY">‭‭154‬‬)</span></span>‬‎				</a>
+			</li>
+					<li class="">
+								<a href="http://ts2.travianteam.com/dorf1.php?newdid=7153&amp;" class="">
+					<img src="Team2_ficheiros/x.gif" alt="">
+					<div class="name">*05. SANGROKU</div>
+					‎‭<span class="coordinates coordinatesWrapper coordinatesAligned coordinatesLTR"><span class="coordinateX">(‭‭146‬‬</span><span class="coordinatePipe">|</span><span class="coordinateY">‭‭157‬‬)</span></span>‬‎				</a>
+			</li>
+					<li class="">
+								<a href="http://ts2.travianteam.com/dorf1.php?newdid=8&amp;" accesskey="b" class="">
+					<img src="Team2_ficheiros/x.gif" alt="">
+					<div class="name">*Play 4 Fun</div>
+					‎‭<span class="coordinates coordinatesWrapper coordinatesAligned coordinatesLTR"><span class="coordinateX">(‭-‭15‬‬</span><span class="coordinatePipe">|</span><span class="coordinateY">‭‭15‬‬)</span></span>‬‎				</a>
+			</li>
+	</ul>
+</div>
+</div>
+</div>
+
+
 </body>
 </html>

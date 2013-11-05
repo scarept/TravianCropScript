@@ -3,6 +3,8 @@
 var matrixZ;
 var sourceImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAARCAIAAAC95HDXAAAAK3RFWHRDcmVhdGlvbiBUaW1lAFNvIDE0IE5vdiAyMDEwIDA3OjE5OjE0ICswMTAw0nQvugAAAAd0SU1FB9oLDgYUKYDv4EAAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAABT0lEQVR42mP8//8/AwWAiRLNVNd/lpHhjQCIsZkZRALZQBEGhquzGREK8Ok3/s/w8CNIm9Q/kFKRDxDNCmAzQeJABU8YQQgGGLGEH1CnPD/IIDB59RyDdiA/SBzMBgJuKScgqeC9F0iyoGiDALC2r/cYuOUZ9q9kcAxnQNasZB3M+X0tyCFA9UDyPwRsYoLQX1Yx3Fop+v81//9LDEByXymI/H+G4coshm9Xg0EqzsC0gAEW939dzfjsv6gU42tuJQagKyDg1GmwQ4zRFWOJP+7Q/0DNQCPq4vgefIBqNjPFohln/Hc28AHJ2Hr2lROgRgDJOm1+TJWMuNIvpuqmqx8xlbEw4ADhBZ/Y+EV/fXwNdAKQjUsZDv1vBICa2b+8lgKnHGD64eZggkYYGviPAR7OZQBGEpAERtj3ndpAdq0WHyjaNjEBYxdNMeMA518A8rTLHjS2YUUAAAAASUVORK5CYII="
 
+
+
 function createMatrix(x,y){
 	temp=0;
 	matrixZ = new Array();
@@ -19,10 +21,11 @@ function createMatrix(x,y){
 }
 
 function getZfromMatrix(x,y){
-	var intX = parseInt(x);
-	var intY = parseInt(y);
+	intX = parseInt(x);
+	intY = parseInt(y);
 	var testX = (intX+400);
 	var testY = (-1)*(intY-400);
+	
 	result = matrixZ[testX][testY];
 	return result;
 }
@@ -36,25 +39,41 @@ function convertCoordinatesToZ(x,y){
 }
 
 function cleanXText(x){
-	var res="";
-	for(i=1;i<x.length;i++)
+	var res=""; //(123
+	//alert(x);
+	for(q=0;q<x.length;q++)
 	{
-		res +=x[i];
+		if((x[q]<=9 && x[q]>=0) || x[q]=='-'){
+			res +=""+x[q];
+		}
 	}
+	//alert("Inicial = " + x.length);
+	//alert("Res = " + res.length);
 	return res;
 }
 
 function cleanYText(y){
 	var res="";
-	for(i=0;i<y.length-1;i++)
+	for(w=0;w<y.length;w++)
 	{
-		res +=y[i];
+		if((y[w]<=9 && y[w]>=0) || y[w]=='-'){
+			res +=y[w];
+		}
+		
 	}
 	return res;
 }
 
-function createDiv(x,y){
-	
+function createDiv(span){
+	div = document.createElement("div");
+	valx = span.getElementByClass("coordinateX").nodeValue;
+	valy = span.getElementByClass("coordinateY").nodeValue;
+	x = cleanXText(valx);
+	y = cleanYText(valy);
+	z = convertCoordinatesToZ(x,y);
+	img = createImageWithHREF(z);
+	div.appendChild(img);
+	return div;
 }
 
 function createLinkHREF(z){
@@ -77,11 +96,28 @@ function createImageWithHREF(z){
 }
 
 function createLinksToMarket(){
-	teste = document.getElementById("result");
-	teste.innerHTML="";
-	convertCoordinatesToZ();
-	texto = document.createTextNode("SCARE WORLD");
-	teste.appendChild(texto);
+	
+	var divAldeias = document.getElementById("sidebarBoxVillagelist");
+	var divLateral = divAldeias.getElementsByClassName("sidebarBoxInnerBox");
+	var insideBox = divLateral[0].getElementsByClassName("innerBox content");
+	var allLi = insideBox[0].getElementsByTagName("li");
+	
+	for(p=0;p<allLi.length;p++){
+		a = allLi[p].getElementsByTagName("a");
+		spanPrincipal = a[0].getElementsByClassName("coordinates coordinatesWrapper coordinatesAligned coordinatesLTR");
+		coordX = spanPrincipal[0].getElementsByClassName("coordinateX");
+		coordX = coordX[0].childNodes[0].textContent;
+		coordY = spanPrincipal[0].getElementsByClassName("coordinateY");
+		coordY = coordY[0].textContent;
+		x = cleanXText(coordX);
+		y = cleanYText(coordY);
+		z = convertCoordinatesToZ(x,y);
+		img = createImageWithHREF(z);
+		//division = a[0].getElementsByClassName("name");
+		a[0].appendChild(img);
+	}
+	//texto = document.createTextNode("SCARE WORLD");
+	//teste.appendChild(texto);
 }
 
 //createLinksToMarket();
