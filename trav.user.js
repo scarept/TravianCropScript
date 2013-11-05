@@ -1,9 +1,17 @@
-
+// ==UserScript==
+// @author      ScarePT
+// @name		Crop Link Village Travian
+// @namespace	userscripts.org
+// @description	Creates a link to send crop to a village on villages list
+// @include     http://ts2.travianteam.com/*
+// @include     ts2.travianteam.com/*
+// @license     GPL version 3 or any later version; http://www.gnu.org/copyleft/gpl.html
+// @grant       none
+// @version     1.0
+// ==/UserScript==
 
 var matrixZ;
 var sourceImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAARCAIAAAC95HDXAAAAK3RFWHRDcmVhdGlvbiBUaW1lAFNvIDE0IE5vdiAyMDEwIDA3OjE5OjE0ICswMTAw0nQvugAAAAd0SU1FB9oLDgYUKYDv4EAAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAEZ0FNQQAAsY8L/GEFAAABT0lEQVR42mP8//8/AwWAiRLNVNd/lpHhjQCIsZkZRALZQBEGhquzGREK8Ok3/s/w8CNIm9Q/kFKRDxDNCmAzQeJABU8YQQgGGLGEH1CnPD/IIDB59RyDdiA/SBzMBgJuKScgqeC9F0iyoGiDALC2r/cYuOUZ9q9kcAxnQNasZB3M+X0tyCFA9UDyPwRsYoLQX1Yx3Fop+v81//9LDEByXymI/H+G4coshm9Xg0EqzsC0gAEW939dzfjsv6gU42tuJQagKyDg1GmwQ4zRFWOJP+7Q/0DNQCPq4vgefIBqNjPFohln/Hc28AHJ2Hr2lROgRgDJOm1+TJWMuNIvpuqmqx8xlbEw4ADhBZ/Y+EV/fXwNdAKQjUsZDv1vBICa2b+8lgKnHGD64eZggkYYGviPAR7OZQBGEpAERtj3ndpAdq0WHyjaNjEBYxdNMeMA518A8rTLHjS2YUUAAAAASUVORK5CYII="
-
-
 
 function createMatrix(x,y){
 	temp=0;
@@ -25,7 +33,6 @@ function getZfromMatrix(x,y){
 	intY = parseInt(y);
 	var testX = (intX+400);
 	var testY = (-1)*(intY-400);
-	
 	result = matrixZ[testX][testY];
 	return result;
 }
@@ -39,16 +46,13 @@ function convertCoordinatesToZ(x,y){
 }
 
 function cleanXText(x){
-	var res=""; //(123
-	//alert(x);
+	var res="";
 	for(q=0;q<x.length;q++)
 	{
 		if((x[q]<=9 && x[q]>=0) || x[q]=='-'){
 			res +=""+x[q];
 		}
 	}
-	//alert("Inicial = " + x.length);
-	//alert("Res = " + res.length);
 	return res;
 }
 
@@ -77,8 +81,6 @@ function createDiv(span){
 }
 
 function createLinkHREF(z){
-	//http://ts2.travianteam.com/build.php?z=195992&gid=17&t=5
-	
 	text ="http://ts2.travianteam.com/build.php?z=";
 	text += z;
 	text += "&gid=17&t=5";
@@ -113,11 +115,8 @@ function createLinksToMarket(){
 		y = cleanYText(coordY);
 		z = convertCoordinatesToZ(x,y);
 		img = createImageWithHREF(z);
-		//division = a[0].getElementsByClassName("name");
 		a[0].appendChild(img);
 	}
-	//texto = document.createTextNode("SCARE WORLD");
-	//teste.appendChild(texto);
 }
 
-//createLinksToMarket();
+createLinksToMarket();
