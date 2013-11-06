@@ -115,7 +115,7 @@ function createLinksToMarket(){
 		y = cleanYText(coordY);
 		z = convertCoordinatesToZ(x,y);
 		img = createImageWithHREF(z);
-		a[0].appendChild(img);
+		allLi[p].appendChild(img);
 	}
 }
 
